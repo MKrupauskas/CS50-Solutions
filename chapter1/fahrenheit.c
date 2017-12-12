@@ -9,4 +9,3 @@ int main(void)
     // set precision to 1 digit after the decimal point
     printf("F: %.1f\n", F); 
 }
-
