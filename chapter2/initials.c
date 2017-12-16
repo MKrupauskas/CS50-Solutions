@@ -39,3 +39,18 @@ void short_solution (int argc, char *argv[])
     }
     printf("\n");
 }
+
+void short_solution (int argc, char *argv[])
+{
+    if (argc < 2)
+    {
+        printf("Missing arguments");
+        return 1;
+    }
+
+    for (int i = 1; i < argc; i++)
+    {
+        printf("%c", toupper(argv[i][1]));
+    }
+    printf("\n");
+}
