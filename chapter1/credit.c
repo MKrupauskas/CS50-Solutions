@@ -1,29 +1,22 @@
 #include <stdio.h>
 #include <cs50.h>
 
-bool verify_card(long long number)
+bool verify_card (long long number)
 {
     int doubled_digits, verification_number = 0;
 
     while (number > 0)
     {
         // Add every digit to sum that isn't doubled
-        verification_number += number % 10; 
+        verification_number += number % 10;
         number /= 10;
-        // Multiply every other digit by two
-        doubled_digits = (number % 10) * 2; 
+        // Multiply every other digit by two and add digits
+        verification_number += ((number % 10) * 2) % 10 + ((number % 10) * 2) / 10;
         number /= 10;
-
-        while (doubled_digits > 0)
-        {
-            // Split and add doubled products' digits
-            verification_number += doubled_digits % 10;
-            doubled_digits /= 10;
-        }
     }
 
-    // valid verification number must end with 0
-    return verification_number % 10 == 0 ? true : false;
+    // verification number must end with 0
+    return (verification_number % 10 == 0);
 }
 
 void print_card_type (long long number)
@@ -40,7 +33,7 @@ void print_card_type (long long number)
         printf("AMEX\n");
     }
     // MASTERCARD starts with 51, 52, 53, 54, 55
-    else if (number == 51 || number == 52 || number == 53 || number == 54 || number == 55)
+    else if (number >= 51 && number <= 55)
     {
         printf("MASTERCARD\n");
     }
