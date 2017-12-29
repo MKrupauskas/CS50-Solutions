@@ -1,11 +1,27 @@
 #include <stdio.h>
 #include <cs50.h>
-#include <string.h>
-#include <ctype.h>
 
-int main ()
+char toupper(char character)
 {
-    string name = get_string();
+    if (character > 96 && character < 123)
+    {
+        // Lowercase characters get converted to uppercase
+        return character - 32;
+    }
+    return character;
+}
+
+int string_length(char *string)
+{
+    int i;
+    for (i = 0; string[i] != '\0'; i++)
+        ;
+    return i;
+}
+
+int main(void)
+{
+    char *name = get_string();
 
     // Print first character if its not a space
     if (name[0] != ' ')
@@ -13,7 +29,7 @@ int main ()
         printf("%c", toupper(name[0]));
     }
 
-    for (int i = 0; i < strlen(name); i++)
+    for (int i = 0; i < string_length(name); i++)
     {
         // Iterate through the whole string and check for spaces
         if (name[i] == ' ' && name[i + 1] != '\0' && name[i + 1] != ' ')
@@ -22,35 +38,5 @@ int main ()
         }
     }
     // Print new line at the end
-    printf("\n");
-}
-
-void short_solution (int argc, char *argv[])
-{
-    if (argc < 2)
-    {
-        printf("Missing arguments");
-        return 1;
-    }
-
-    for (int i = 1; i < argc; i++)
-    {
-        printf("%c", toupper(argv[i][0]));
-    }
-    printf("\n");
-}
-
-void short_solution (int argc, char *argv[])
-{
-    if (argc < 2)
-    {
-        printf("Missing arguments");
-        return 1;
-    }
-
-    for (int i = 1; i < argc; i++)
-    {
-        printf("%c", toupper(argv[i][1]));
-    }
     printf("\n");
 }
