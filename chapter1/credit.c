@@ -50,3 +50,4 @@ int main (void)
 
     verify_card(number) ? print_card_type(number) : printf("INVALID\n");
 }
+
