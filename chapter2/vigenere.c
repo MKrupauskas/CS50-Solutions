@@ -10,4 +10,7 @@ int main(int argc, char **argv)
     }
 
     char *key = argv[1];
+    char *plaintext = get_string("plaintext: ");
+
+    printf(plaintext);
 }
