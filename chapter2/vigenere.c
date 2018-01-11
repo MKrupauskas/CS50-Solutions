@@ -10,21 +10,22 @@ int string_length (char *string)
 
 bool is_lower (char character)
 {
+    // Returns true or false whether or not the char is lowercase
     return (character >= 'a' && character <= 'z');
 }
 
 bool is_alpha (char character)
 {
+    // Returns true or false wheter or not the char is alphabetic
     return (character >= 'a' && character <= 'z') || (character >= 'A' && character <= 'Z');
 }
 
 void encrypt (char character, int key)
 {
-    // The 97 and 65 are for going to and from the alphabetical enumeration
-    // printf("%i", key);
+    // The 'a' (ASCII 97) and 'A' (ASCII 65) are for going to and from the alphabetical enumeration
     int text_reference = (is_lower(character) ? 'a' : 'A');
     printf("%c", (((character + (key  - (is_lower(key) ? 'a' : 'A'))) - text_reference) % 26) +
-        text_reference);
+           text_reference);
 }
 
 int main (int argc, char **argv)
@@ -36,12 +37,13 @@ int main (int argc, char **argv)
         return 1;
     }
 
-    // Get the key, turn it into an int
+    // Get the key, check if its alphabetic
     char *key = argv[1];
     for (int i = 0, l = string_length(key); i < l; i++)
     {
         if (!is_alpha(key[i]))
         {
+            printf("Key must only contain alphabet characters");
             return 1;
         }
     }
@@ -53,7 +55,7 @@ int main (int argc, char **argv)
     printf("ciphertext: ");
     for (int i = 0, key_index = 0, l = string_length(plaintext); i < l; i++)
     {
-        // Check if the char is in the alphabet
+        // Check if the char is in the alphabet, encrypt it, increment key index
         if (is_alpha(plaintext[i]))
         {
             encrypt(plaintext[i], key[key_index % string_length(key)]);
@@ -67,3 +69,4 @@ int main (int argc, char **argv)
     }
     printf("\n");
 }
+
