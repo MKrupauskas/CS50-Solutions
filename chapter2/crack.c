@@ -3,7 +3,7 @@
 #define _XOPEN_SOURCE
 #include <unistd.h>
 
-int main (int argc, char **argv)
+int main(int argc, char **argv)
 {
     if (argc != 2)
     {
@@ -16,10 +16,13 @@ int main (int argc, char **argv)
     salt[1] = argv[1][1];
     salt[2] = '\0'
 
-    char pass[4];
-    char *characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+        char pass[4];
+    char *characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     for (int i = 0; i < 4; i++)
     {
+        pass[0] = i;
+        if (crypt(pass, salt) == hash)
+            printf("Your pass is &c", pass);
         for (int j = 0; j < 52; j++)
         {
 
@@ -31,7 +34,6 @@ int main (int argc, char **argv)
 
                     for (int j = 0; j < 52; j++)
                     {
-
                     }
                 }
             }
