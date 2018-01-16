@@ -20,23 +20,11 @@ int main(int argc, char **argv)
     char *characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     for (int i = 0; i < 4; i++)
     {
-        pass[0] = i;
-        if (crypt(pass, salt) == hash)
-            printf("Your pass is &c", pass);
         for (int j = 0; j < 52; j++)
         {
-
-            for (int k = 0; k < 52; k++)
-            {
-
-                for (int l = 0; l < 52; l++)
-                {
-
-                    for (int j = 0; j < 52; j++)
-                    {
-                    }
-                }
-            }
+            pass[i] = characters[j];
+            if (crypt(pass, salt) == hash)
+                printf("Your pass is &c", pass);
         }
     }
 }
