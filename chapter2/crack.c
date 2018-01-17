@@ -22,9 +22,18 @@ int main(int argc, char **argv)
     {
         for (int j = 0; j < 52; j++)
         {
-            pass[i] = characters[j];
-            if (crypt(pass, salt) == hash)
-                printf("Your pass is &c", pass);
+            pass[0] = characters[j];
         }
+
+        if (i >= 1)
+        {
+            for (int j = 0; j < 52; j++)
+            {
+                pass[1] = characters[j];
+            }
+        }
+
+        if (crypt(pass, salt) == hash)
+            printf("Your pass is &c", pass);
     }
 }
