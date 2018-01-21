@@ -87,3 +87,14 @@ int main (int argc, char **argv)
     char *s = "aa";
     printf(abc(s, 1));
 }
+
+for (int i = 0; i < 4; i++)
+{
+    for ()
+    if (i >= 0)
+    {
+
+    }
+
+
+}
