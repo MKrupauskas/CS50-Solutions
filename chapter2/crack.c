@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <cs50.h>
 
-int main (int argc, char **argv)
+int main(int argc, char **argv)
 {
     if (argc != 2)
     {
@@ -14,87 +14,124 @@ int main (int argc, char **argv)
     salt[1] = argv[1][1];
     salt[2] = '\0';
 
-    char pass[5];
-    pass[0] = '\0';
-    pass[1] = '\0';
-    pass[2] = '\0';
-    pass[3] = '\0';
-    pass[4] = '\0';
+    char *chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz", *hash;
+    char password[5];
 
-    char *characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-
-    // for (int i = 0; i < 4; i++)
-    // {
-    //     for (int j = 0; j < 52; j++)
-    //     {
-    //         pass[0] = characters[j];
-    //         if (i >= 1)
-    //         {
-    //             for (int k = 0; k < 52; k++)
-    //             {
-    //                 pass[1] = characters[k];
-
-    //                 if (i >= 2)
-    //                 {
-    //                     for (int l = 0; l < 52; l++)
-    //                     {
-    //                         pass[2] = characters[l];
-    //                         if (i >= 3)
-    //                         {
-    //                             for (int p = 0; p < 52; p++)
-    //                             {
-    //                                 pass[3] = characters[p];
-    //                                 printf("%s\n", pass);
-    //                             }
-    //                         }
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
-
-    int abc(char *s, int size)
+    //testing for 1 chars words.
+    for (int i = 0; i < 52; i++)
     {
-        for (int i = 0; i < size; i++)
+        password[0] = chars[i];
+        password[1] = '\0';
+
+        hash = crypt(password, salt);
+        if (strcmp(argv[1], hash) == 0)
         {
-            if (s[i] == '\0')
+            printf("%s %s %s\n", password, argv[1], hash);
+            return 0;
+        }
+    }
+
+    for (int j = 0; j < 52; j++)
+    {
+        for (int k = 0; k < 52; k++)
+        {
+            password[0] = chars[j];
+            password[1] = chars[k];
+            password[2] = '\0';
+
+            hash = crypt(password, salt);
+            if (strcmp(argv[1], hash) == 0)
             {
-                s[i] = 'A';
-                break;
-            }
-            if (s[i] == 'Z')
-            {
-                s[i] = 'a';
-                break;
-            }
-            if (s[i] == 'z')
-            {
-                if (i == size - 1)
-                {
-                    return 0;
-                }
-                s[i] = 'A';
-            }
-            else
-            {
-                s[i]++;
-                break;
+                printf("%s %s %s\n", password, argv[1], hash);
+                return 0;
             }
         }
-        return 1;
     }
-    char *s = "aa";
-    printf(abc(s, 1));
+
+    for (int o = 0; o < 52; o++)
+    {
+        for (int p = 0; p < 52; p++)
+        {
+            for (int q = 0; q < 52; q++)
+            {
+                password[0] = chars[o];
+                password[1] = chars[p];
+                password[2] = chars[q];
+                password[3] = '\0';
+
+                hash = crypt(password, salt);
+                if (strcmp(argv[1], hash) == 0)
+                {
+                    printf("%s %s %s\n", password, argv[1], hash);
+                    return 0;
+                }
+            }
+        }
+    }
+
+    for (int o = 0; o < 52; o++)
+    {
+        for (int p = 0; p < 52; p++)
+        {
+            for (int q = 0; q < 52; q++)
+            {
+                for (int r = 0; r < 52; r++)
+                {
+                    password[0] = chars[o];
+                    password[1] = chars[p];
+                    password[2] = chars[q];
+                    password[3] = chars[r];
+                    password[4] = '\0';
+
+                    hash = crypt(password, salt);
+                    if (strcmp(argv[1], hash) == 0)
+                    {
+                        printf("%s %s %s\n", password, argv[1], hash);
+                        return 0;
+                    }
+                }
+            }
+        }
+    }
 }
+
+int abc(char *s, int size)
+{
+    for (int i = 0; i < size; i++)
+    {
+        if (s[i] == '\0')
+        {
+            s[i] = 'A';
+            break;
+        }
+        if (s[i] == 'Z')
+        {
+            s[i] = 'a';
+            break;
+        }
+        if (s[i] == 'z')
+        {
+            if (i == size - 1)
+            {
+                return 0;
+            }
+            s[i] = 'A';
+        }
+        else
+        {
+            s[i]++;
+            break;
+        }
+    }
+    return 1;
+}
+char *s = "aa";
+printf(abc(s, 1));
 
 for (int i = 0; i < 4; i++)
 {
     for ()
-    if (i >= 0)
-    {
-
-    }
-
-
+        if (i >= 0)
+        {
+        }
 }
