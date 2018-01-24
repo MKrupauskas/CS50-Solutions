@@ -135,3 +135,36 @@ for (int i = 0; i < 4; i++)
         {
         }
 }
+
+for (int i = 0; i < 4; i++)
+    password[i] = '\0';
+
+for (int size = 0; size < 4; size++)
+{
+    for (long long i = 0; i < pow(52, size + 1); i++)
+    {
+        password[0] = chars[i % 52];
+
+        if (size >= 1)
+        {
+            password[1] = chars[(i / 52) % 52];
+        }
+        if (size >= 2)
+        {
+            password[2] = chars[(i / (int)pow(52, 2)) % 52];
+        }
+        if (size >= 3)
+        {
+            password[3] = chars[(i / (int)pow(52, 3)) % 52];
+        }
+
+        hash = crypt(password, salt);
+        // printf("%s %s %s\n", password, argv[1], hash);
+        if (strcmp(argv[1], hash) == 0)
+        // if (true)
+        {
+            printf("%s %s %s\n", password, argv[1], hash);
+            return 0;
+        }
+    }
+}
