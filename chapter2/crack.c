@@ -95,38 +95,38 @@ int main(int argc, char **argv)
     }
 }
 
-int abc(char *s, int size)
-{
-    for (int i = 0; i < size; i++)
-    {
-        if (s[i] == '\0')
-        {
-            s[i] = 'A';
-            break;
-        }
-        if (s[i] == 'Z')
-        {
-            s[i] = 'a';
-            break;
-        }
-        if (s[i] == 'z')
-        {
-            if (i == size - 1)
-            {
-                return 0;
-            }
-            s[i] = 'A';
-        }
-        else
-        {
-            s[i]++;
-            break;
-        }
-    }
-    return 1;
-}
-char *s = "aa";
-printf(abc(s, 1));
+// int abc(char *s, int size)
+// {
+//     for (int i = 0; i < size; i++)
+//     {
+//         if (s[i] == '\0')
+//         {
+//             s[i] = 'A';
+//             break;
+//         }
+//         if (s[i] == 'Z')
+//         {
+//             s[i] = 'a';
+//             break;
+//         }
+//         if (s[i] == 'z')
+//         {
+//             if (i == size - 1)
+//             {
+//                 return 0;
+//             }
+//             s[i] = 'A';
+//         }
+//         else
+//         {
+//             s[i]++;
+//             break;
+//         }
+//     }
+//     return 1;
+// }
+// char *s = "aa";
+// printf(abc(s, 1));
 
 for (int i = 0; i < 4; i++)
 {
