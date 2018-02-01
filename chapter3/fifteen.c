@@ -175,12 +175,14 @@ void greet(void)
 void init(void)
 {
     int board[d][d];
+    int nums = d * d - 1;
+    // TODO iterate and add values to 2d array from 1 to nums
     for (int i = 0; i < d; i++)
     {
         for (int j = 0; j < d; j++)
         {
-            board[i][j] = '0';
-        } 
+            board[i][j] = j + 1;
+        }
     }
     // TODO
 }
