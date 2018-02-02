@@ -181,7 +181,13 @@ void init(void)
     {
         for (int j = 0; j < d; j++)
         {
-            board[i][j] = j + 1;
+            board[i][j] = nums;
+            nums--;
+            if (nums == 1 && d % 2 == 0)
+            {
+                board[i][j - 1] = 1;
+                board[i][j] = 2;
+            }
         }
     }
     // TODO
