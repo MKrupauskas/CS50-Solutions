@@ -69,7 +69,7 @@ int main(int argc, string argv[])
     if (d < DIM_MIN || d > DIM_MAX)
     {
         printf("Board must be between %i x %i and %i x %i, inclusive.\n",
-               DIM_MIN, DIM_MIN, DIM_MAX, DIM_MAX);
+            DIM_MIN, DIM_MIN, DIM_MAX, DIM_MAX);
         return 2;
     }
 
@@ -174,7 +174,7 @@ void greet(void)
  */
 void init(void)
 {
-    int board[d][d];
+    // TODO
     int nums = d * d - 1;
     // TODO iterate and add values to 2d array from 1 to nums
     for (int i = 0; i < d; i++)
@@ -183,14 +183,13 @@ void init(void)
         {
             board[i][j] = nums;
             nums--;
-            if (nums == 1 && d % 2 == 0)
+            if (nums == 0 && d % 2 == 0)
             {
                 board[i][j - 1] = 1;
                 board[i][j] = 2;
             }
         }
     }
-    // TODO
 }
 
 /**
@@ -199,6 +198,22 @@ void init(void)
 void draw(void)
 {
     // TODO
+    for (int i = 0; i < d; i++)
+    {
+        printf("\n");
+        for (int j = 0; j < d; j++)
+        {
+            if (board[i][j] == 0)
+            {
+                printf(" _");
+            }
+            else
+            {
+                printf("%2i ", board[i][j]);
+            }
+        }
+        printf("\n");
+    }
 }
 
 /**
@@ -208,6 +223,48 @@ void draw(void)
 bool move(int tile)
 {
     // TODO
+    if (d * d - 1 < tile || tile < 1) return false;
+
+    int row, column;
+
+    for (int i = 0; i < d; i++)
+    {
+        for (int j = 0; j < d; j++)
+        {
+            if (board[i][j] == tile)
+            {
+                row = i;
+                column = j;
+            }
+
+        }
+    }
+
+    if (row + 1 <= d && board[row + 1][column] == 0)
+    {
+        board[row + 1][column] = tile;
+        board[row][column] = 0;
+        return true;
+    }
+    else if (row - 1 >= 0 && board[row - 1][column] == 0)
+    {
+        board[row - 1][column] = tile;
+        board[row][column] = 0;
+        return true;
+    }
+    else if (column + 1 <= d && board[row][column + 1] == 0)
+    {
+        board[row][column + 1] = tile;
+        board[row][column] = 0;
+        return true;
+    }
+    else if (column - 1 >= 0 && board[row][column - 1] == 0)
+    {
+        board[row][column - 1] = tile;
+        board[row][column] = 0;
+        return true;
+    }
+
     return false;
 }
 
@@ -218,9 +275,5 @@ bool move(int tile)
 bool won(void)
 {
     // TODO
-    if (check(board))
-    {
-        return true;
-    }
     return false;
 }
