@@ -205,7 +205,7 @@ void draw(void)
         {
             if (board[i][j] == 0)
             {
-                printf(" _");
+                printf(" _ ");
             }
             else
             {
@@ -236,11 +236,10 @@ bool move(int tile)
                 row = i;
                 column = j;
             }
-
         }
     }
-
-    if (row + 1 <= d && board[row + 1][column] == 0)
+    // printf("row x %i\n column y %i", row, column);
+    if (row + 1 < d && board[row + 1][column] == 0)
     {
         board[row + 1][column] = tile;
         board[row][column] = 0;
@@ -252,15 +251,15 @@ bool move(int tile)
         board[row][column] = 0;
         return true;
     }
-    else if (column + 1 <= d && board[row][column + 1] == 0)
+    else if (column + 1 < d && board[row][column + 1] == 0)
     {
-        board[row][column + 1] = tile;
+        board[row][column + 1] = board[row][column];
         board[row][column] = 0;
         return true;
     }
     else if (column - 1 >= 0 && board[row][column - 1] == 0)
     {
-        board[row][column - 1] = tile;
+        board[row][column - 1] = board[row][column];
         board[row][column] = 0;
         return true;
     }
