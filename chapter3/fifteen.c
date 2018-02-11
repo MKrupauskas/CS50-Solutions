@@ -69,7 +69,7 @@ int main(int argc, string argv[])
     if (d < DIM_MIN || d > DIM_MAX)
     {
         printf("Board must be between %i x %i and %i x %i, inclusive.\n",
-            DIM_MIN, DIM_MIN, DIM_MAX, DIM_MAX);
+               DIM_MIN, DIM_MIN, DIM_MAX, DIM_MAX);
         return 2;
     }
 
@@ -223,7 +223,10 @@ void draw(void)
 bool move(int tile)
 {
     // TODO
-    if (d * d - 1 < tile || tile < 1) return false;
+    if (d * d - 1 < tile || tile < 1)
+    {
+        return false;
+    }
 
     int row, column;
 
@@ -274,5 +277,17 @@ bool move(int tile)
 bool won(void)
 {
     // TODO
-    return false;
+    int nums = 1;
+
+    for (int i = 0; i < d; i++)
+    {
+        for (int j = 0; j < d; j++)
+        {
+            if (board[i][j] == nums)
+            {
+                nums++;
+            }
+        }
+    }
+    return (nums == d * d);
 }
