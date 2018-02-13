@@ -174,15 +174,15 @@ void greet(void)
  */
 void init(void)
 {
-    // TODO
     int nums = d * d - 1;
-    // TODO iterate and add values to 2d array from 1 to nums
+    // Iterate and add values to 2d array from nums to 0
     for (int i = 0; i < d; i++)
     {
         for (int j = 0; j < d; j++)
         {
             board[i][j] = nums;
             nums--;
+            // Special case to make the game solvable if d is even
             if (nums == 0 && d % 2 == 0)
             {
                 board[i][j - 1] = 1;
@@ -197,12 +197,12 @@ void init(void)
  */
 void draw(void)
 {
-    // TODO
     for (int i = 0; i < d; i++)
     {
         printf("\n");
         for (int j = 0; j < d; j++)
         {
+            // Print "_" if zero, else print the coresponding number
             if (board[i][j] == 0)
             {
                 printf(" _ ");
@@ -222,14 +222,14 @@ void draw(void)
  */
 bool move(int tile)
 {
-    // TODO
+    // Check if tile is in boundaries
     if (d * d - 1 < tile || tile < 1)
     {
         return false;
     }
 
     int row, column;
-
+    // Determine the coordinates of given tile
     for (int i = 0; i < d; i++)
     {
         for (int j = 0; j < d; j++)
@@ -241,7 +241,8 @@ bool move(int tile)
             }
         }
     }
-    // printf("row x %i\n column y %i", row, column);
+
+    // Check and swap
     if (row + 1 < d && board[row + 1][column] == 0)
     {
         board[row + 1][column] = tile;
@@ -276,9 +277,9 @@ bool move(int tile)
  */
 bool won(void)
 {
-    // TODO
     int nums = 1;
 
+    // Iterate through board, if it's in order nums == d * d
     for (int i = 0; i < d; i++)
     {
         for (int j = 0; j < d; j++)
