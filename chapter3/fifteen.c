@@ -199,20 +199,12 @@ void draw(void)
 {
     for (int i = 0; i < d; i++)
     {
-        printf("\n");
         for (int j = 0; j < d; j++)
         {
             // Print "_" if zero, else print the coresponding number
-            if (board[i][j] == 0)
-            {
-                printf(" _ ");
-            }
-            else
-            {
-                printf("%2i ", board[i][j]);
-            }
+            (board[i][j] == 0) ? printf(" _ ") : printf("%2i ", board[i][j]);
         }
-        printf("\n");
+        printf("\n\n");
     }
 }
 
@@ -229,6 +221,7 @@ bool move(int tile)
     }
 
     int row, column;
+
     // Determine the coordinates of given tile
     for (int i = 0; i < d; i++)
     {
@@ -284,11 +277,13 @@ bool won(void)
     {
         for (int j = 0; j < d; j++)
         {
-            if (board[i][j] == nums)
+            if (board[i][j] != nums)
             {
-                nums++;
+                // Winning condition will find '0' at the end of the board will return true instead of false
+                return (nums == d * d);
             }
+            nums++;
         }
     }
-    return (nums == d * d);
+    return false;
 }
