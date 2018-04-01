@@ -62,8 +62,10 @@ bool startup(void);
 
 // newly-added prototypes
 void check(void);
-void checkrows(int val);
-void checkcols(int val);
+// void checkrows(int val);
+bool checkrows();
+// void checkcols(int val);
+bool checkcols();
 void checkboxes(int val);
 bool check_ind_box(int x, int y, int val);
 void checkwin(void);
@@ -246,7 +248,7 @@ int main(int argc, char *argv[])
     return 0;
 }
 
-bool check_col()
+bool checkcols()
 {
     // get every number in every column
     int col[9];
@@ -259,6 +261,27 @@ bool check_col()
             {
                 // duplicate found
                 if(col[k] == col[j] && col[k] != 0)
+                return false;
+            }
+        }
+    }
+    // no duplicates found
+    return true;
+}
+
+bool checkrows()
+{
+    // get every number in every column
+    int row[9];
+    for (int i = 0; i < 9; i++)
+    {
+        for(int j = 0; j < 9; j++)
+        {
+            row[j] = g.board[i][j];
+            for(int k = 0; k < j; k++)
+            {
+                // duplicate found
+                if(row[k] == row[j] && row[k] != 0)
                 return false;
             }
         }
