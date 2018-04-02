@@ -66,9 +66,11 @@ void check(void);
 bool checkrows();
 // void checkcols(int val);
 bool checkcols();
-void checkboxes(int val);
+// void checkboxes(int val);
+bool checkboxes();
 bool check_ind_box(int x, int y, int val);
-void checkwin(void);
+// void checkwin(void);
+bool checkwin(void);
 void reposition(int ch);
 void update_numbers(int ch, bool zero);
 void undo_move(void);
@@ -288,6 +290,62 @@ bool checkrows()
     }
     // no duplicates found
     return true;
+}
+
+bool checkboxes()
+{
+    /** a = initial y axis
+    b = init x axis
+    i = y axis
+    j = x axis
+    k = position in square **/
+
+    int square[10];
+
+    for(int a = 0; a < 7; a = a + 3)
+    {
+        for(int b = 0; b < 7; b = b + 3)
+        {
+            // Clear array
+            memset(&square[0], 0, sizeof(square));
+
+            // Capture all numbers
+            for (int i = a; i < a + 3; i++)
+            {
+                for(int j = b; j < b + 3; j++)
+                {
+                    // Duplicate found
+                    if (g.board[i][j] != 0 && square[g.board[i][j]] == 1)
+                        return false;
+
+                    square[g.board[i][j]] = 1;
+                }
+            }
+        }
+    }
+    return true;
+}
+
+bool checkwin(void)
+{
+    // Check if won & show banner
+    if(checkColumns(0) && checkRows(0) && checkSquares(0))
+    {
+        show_banner("Congrats, you won!");
+
+        // Prevents user from changing numbers
+        for (int i = 0; i < 9; i++)
+           {
+               for(int j = 0; j < 9; j++)
+                  {
+                      g.initialBoard[j][i] = 9;
+                  }
+           }
+         return true;
+    }
+
+    else
+    return false;
 }
 
 /*
