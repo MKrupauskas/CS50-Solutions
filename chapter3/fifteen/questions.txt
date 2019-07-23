@@ -1,0 +1,4 @@
+0. The framework accepts sizes from 3 x 3 to 9 x 9, inclusive.
+1. The board is represented by a 2D array of integers
+2. The greet() function is called to greet the player
+3. You have to implement init(), draw(), move(), and win()
